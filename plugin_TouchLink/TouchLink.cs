@@ -175,18 +175,21 @@ public class TouchLink : ITrackingDevice
 
             PredictionMs = (int)sender.Value; // Also save!
             Host.PluginSettings.SetSetting("PredictionMs", PredictionMs);
+            Host.PlayAppSound(SoundType.Invoke);
         };
 
         KeepAliveToggleSwitch.Toggled += (sender, _) =>
         {
             KeepRiftAlive = (sender as ToggleSwitch)?.IsOn ?? false;
             Host.PluginSettings.SetSetting("KeepRiftAlive", KeepRiftAlive);
+            Host.PlayAppSound(KeepRiftAlive ? SoundType.ToggleOn : SoundType.ToggleOff);
         };
 
         ReduceResToggleSwitch.Toggled += (sender, _) =>
         {
             ReduceResolution = (sender as ToggleSwitch)?.IsOn ?? true;
             Host.PluginSettings.SetSetting("ReduceResolution", ReduceResolution);
+            Host.PlayAppSound(ReduceResolution ? SoundType.ToggleOn : SoundType.ToggleOff);
         };
 
         // Mark the plugin as loaded
