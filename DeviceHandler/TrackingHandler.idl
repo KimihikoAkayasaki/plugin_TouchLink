@@ -1,0 +1,55 @@
+// Copyright (c) Microsoft Corporation and Contributors.
+// Licensed under the MIT License.
+
+namespace DeviceHandler
+{
+	struct Vector
+	{
+		Single X;
+		Single Y;
+		Single Z;
+	};
+
+	struct Quaternion
+	{
+		Single X;
+		Single Y;
+		Single Z;
+		Single W;
+	};
+
+	struct Joint
+	{
+		String Name;
+		Vector Position;
+		Quaternion Orientation;
+
+		Vector Velocity;
+		Vector Acceleration;
+		Vector AngularVelocity;
+		Vector AngularAcceleration;
+	};
+
+    [default_interface]
+	runtimeclass TrackingHandler
+	{
+		TrackingHandler(); // Default constructor
+
+		void Update(); // Prepare stuff for update
+		Int32 Initialize(); // Initialize handlers
+		Int32 Shutdown();   // Disconnect, cleanup
+
+		Boolean KeepAlive; // Enable ODTKRA tooling
+		Boolean ReduceRes; // Reduce Rift resolution
+		Int32 PredictionMs; // Prediction time in ms
+
+		Boolean IsInitialized { get; }; // Init { get; }
+		Int32 StatusResult { get; }; // Status { get; }
+        
+		// Event handler: log a stringized message
+		event Windows.Foundation.EventHandler<String> LogEvent;
+
+        // Get-only: all tracked joints/devices
+		Joint[] TrackedJoints { get; };
+    }
+}

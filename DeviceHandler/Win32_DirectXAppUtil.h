@@ -1,5 +1,4 @@
-
-/************************************************************************************
+﻿/************************************************************************************
 Filename    :   Win32_DirectXAppUtil.h
 Content     :   D3D11 application/Window setup functionality for RoomTiny
 Created     :   October 20th, 2014

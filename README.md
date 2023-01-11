@@ -1,6 +1,13 @@
-# Amethyst-CV1-Plugin
+# plugin_TouchLink
 
-To compile you must place [LibOVR](https://developer.oculus.com/downloads/package/oculus-sdk-for-windows) in the "external" folder
+## Compilation:
+- Download [OVRSDK](https://developer.oculus.com/downloads/package/oculus-sdk-for-windows) and unzip it to `\external\OVRSDK`
 
-To download precompiled binary go to [Releases](https://github.com/DeltaNeverUsed/Amethyst-CV1-Plugin/releases/latest) and download the latest version,
-unzip and place contents into your Amethyst devices folder
+- Build the native handler (`DeviceHandler`→`Build`)  
+  (Always `Rebuild` to apply any code changes you've made)
+
+- Publish `plugin_TouchLink` using the prepared publish profile  
+  (`plugin_TouchLink`→`Publish`→`Publish`→`Open folder`)
+
+You can download the published plugin from the repo-wise releases,  
+nightly (check builds) are stored as artifacts in GitHub Actions runs.
