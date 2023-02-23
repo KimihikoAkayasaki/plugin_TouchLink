@@ -13,7 +13,7 @@ providing Amethyst support for Oculus (OVR) devices, using the [Oculus OVR SDK](
 [The device handler](DeviceHandler) is written in C++/WinRT, and [the plugin itself](plugin_TouchLink) is written in C#
 
 ## **Downloads**
-You're going to find built plugins (for each code push) in [repo Actions](https://github.com/KimihikoAkayasaki/plugin_TouchLink/actions/).
+You're going to find built plugins in [repo Releases](https://github.com/KimihikoAkayasaki/plugin_TouchLink/releases/latest/).
 
 ## **Build & Deploy**
 Both build and deployment instructions [are available here](https://github.com/KimihikoAkayasaki/plugin_TouchLink/blob/master/.github/workflows/build.yml).
