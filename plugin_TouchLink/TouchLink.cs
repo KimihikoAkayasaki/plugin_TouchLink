@@ -26,7 +26,8 @@ namespace plugin_TouchLink;
 [ExportMetadata("Name", "TouchLink")]
 [ExportMetadata("Guid", "DELTANRU-VEND-APII-DVCE-DVCEOTCHLINK")]
 [ExportMetadata("Publisher", "DeltaNeverUsed")]
-[ExportMetadata("Website", "https://github.com/DeltaNeverUsed/Amethyst-CV1-Plugin")]
+[ExportMetadata("Version", "1.0.0.0")]
+[ExportMetadata("Website", "https://github.com/KimihikoAkayasaki/plugin_TouchLink")]
 public class TouchLink : ITrackingDevice
 {
     [Import(typeof(IAmethystHost))] private IAmethystHost Host { get; set; }

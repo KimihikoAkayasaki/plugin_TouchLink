@@ -51,4 +51,6 @@ jobs:
           automatic_release_tag: "latest"
           prerelease: true
           title: "plugin_TouchLink Build Artifact"
-          files: "plugin_TouchLink/bin/Release/net7.0/win10-x64/publish/plugin_TouchLink.zip"
+          files: |
+            ./plugin_TouchLink/bin/Release/net7.0/win10-x64/publish/plugin_TouchLink.zip
+            ./external/manifest.json
