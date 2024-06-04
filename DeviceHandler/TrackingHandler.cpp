@@ -32,7 +32,8 @@ namespace winrt::DeviceHandler::implementation
                 guardian->mSession, ovr_GetTimeInSeconds() +
                 static_cast<float>(extraPrediction) * 0.001, ovrTrue);
 
-            for (int i = 0; i < 2; i++)
+            // Grab controller poses
+            for (int i = 0; i <= 1; i++)
             {
                 trackedJoints.at(i).Position = {
                     tracking_state.HandPoses[i].ThePose.Position.x,
@@ -72,54 +73,44 @@ namespace winrt::DeviceHandler::implementation
                 };
             }
 
-            for (size_t i = 0; i < guardian->vrObjects; i++)
+            // Grab the HMD pose
             {
-                auto deviceType = static_cast<ovrTrackedDeviceType>(ovrTrackedDevice_Object0 + i);
-                ovrPoseStatef ovr_pose;
+                trackedJoints.at(2).Position = {
+                    tracking_state.HeadPose.ThePose.Position.x,
+                    tracking_state.HeadPose.ThePose.Position.y,
+                    tracking_state.HeadPose.ThePose.Position.z
+                };
 
-                ovr_GetDevicePoses(guardian->mSession, &deviceType, 1,
-                                   (ovr_GetTimeInSeconds() + (static_cast<float>(extraPrediction) * 0.001)),
-                                   &ovr_pose);
-                if ((ovr_pose.ThePose.Orientation.x != 0) && (ovr_pose.ThePose.Orientation.y != 0) && (ovr_pose.ThePose.
-                    Orientation.z != 0))
-                {
-                    trackedJoints.at(i).Position = {
-                        ovr_pose.ThePose.Position.x,
-                        ovr_pose.ThePose.Position.y,
-                        ovr_pose.ThePose.Position.z
-                    };
+                trackedJoints.at(2).Orientation = {
+                    tracking_state.HeadPose.ThePose.Orientation.x,
+                    tracking_state.HeadPose.ThePose.Orientation.y,
+                    tracking_state.HeadPose.ThePose.Orientation.z,
+                    tracking_state.HeadPose.ThePose.Orientation.w
+                };
 
-                    trackedJoints.at(i).Orientation = {
-                        ovr_pose.ThePose.Orientation.x,
-                        ovr_pose.ThePose.Orientation.y,
-                        ovr_pose.ThePose.Orientation.z,
-                        ovr_pose.ThePose.Orientation.w
-                    };
+                trackedJoints.at(2).Velocity = {
+                    tracking_state.HeadPose.LinearVelocity.x,
+                    tracking_state.HeadPose.LinearVelocity.y,
+                    tracking_state.HeadPose.LinearVelocity.z
+                };
 
-                    trackedJoints.at(i).Velocity = {
-                        ovr_pose.LinearVelocity.x,
-                        ovr_pose.LinearVelocity.y,
-                        ovr_pose.LinearVelocity.z
-                    };
+                trackedJoints.at(2).Acceleration = {
+                    tracking_state.HeadPose.LinearAcceleration.x,
+                    tracking_state.HeadPose.LinearAcceleration.y,
+                    tracking_state.HeadPose.LinearAcceleration.z
+                };
 
-                    trackedJoints.at(i).Acceleration = {
-                        ovr_pose.LinearAcceleration.x,
-                        ovr_pose.LinearAcceleration.y,
-                        ovr_pose.LinearAcceleration.z
-                    };
+                trackedJoints.at(2).AngularVelocity = {
+                    tracking_state.HeadPose.AngularVelocity.x,
+                    tracking_state.HeadPose.AngularVelocity.y,
+                    tracking_state.HeadPose.AngularVelocity.z
+                };
 
-                    trackedJoints.at(i).AngularVelocity = {
-                        ovr_pose.AngularVelocity.x,
-                        ovr_pose.AngularVelocity.y,
-                        ovr_pose.AngularVelocity.z
-                    };
-
-                    trackedJoints.at(i).AngularAcceleration = {
-                        ovr_pose.AngularAcceleration.x,
-                        ovr_pose.AngularAcceleration.y,
-                        ovr_pose.AngularAcceleration.z
-                    };
-                }
+                trackedJoints.at(2).AngularAcceleration = {
+                    tracking_state.HeadPose.AngularAcceleration.x,
+                    tracking_state.HeadPose.AngularAcceleration.y,
+                    tracking_state.HeadPose.AngularAcceleration.z
+                };
             }
 
             frame++; // Hit the frame counter
@@ -173,12 +164,9 @@ namespace winrt::DeviceHandler::implementation
         // Check the yield result
         if (statusResult == S_OK) 
         {
-            // Always should keep >0 joints at init so replace the 1st one
-            trackedJoints.push_back(Joint{ .Name = L"Left Touch Controller" });
-            trackedJoints.push_back(Joint{ .Name = L"Right Touch Controller" });
-
-            for (size_t i = 0; i < guardian->vrObjects; i++)
-                trackedJoints.push_back(Joint{ .Name = std::format(L"VR Object {}", i + 1).c_str() });
+            // Not used anymore - joints are assigned in static context
+            /*for (size_t i = 0; i < guardian->vrObjects; i++)
+                trackedJoints.push_back(Joint{ .Name = std::format(L"VR Object {}", i + 1).c_str() });*/
         }
 
         // Mark the device as initialized

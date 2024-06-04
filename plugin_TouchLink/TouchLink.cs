@@ -26,7 +26,7 @@ namespace plugin_TouchLink;
 [ExportMetadata("Name", "TouchLink")]
 [ExportMetadata("Guid", "DELTANRU-VEND-APII-DVCE-DVCEOTCHLINK")]
 [ExportMetadata("Publisher", "DeltaNeverUsed")]
-[ExportMetadata("Version", "1.0.0.0")]
+[ExportMetadata("Version", "1.0.0.1")]
 [ExportMetadata("Website", "https://github.com/KimihikoAkayasaki/plugin_TouchLink")]
 public class TouchLink : ITrackingDevice
 {
@@ -291,21 +291,21 @@ public class TouchLink : ITrackingDevice
             // Refresh all controllers/all
             using var jointEnumerator = TrackedJoints.GetEnumerator();
             Handler.TrackedJoints?.ToList()
-                .ForEach(controller =>
+                .ForEach(vrObject =>
                 {
                     // Ove to the next controller list entry
                     if (!jointEnumerator.MoveNext() ||
                         jointEnumerator.Current is null) return;
 
                     // Copy pose data from the controller
-                    jointEnumerator.Current.Position = controller.Position.ToNet();
-                    jointEnumerator.Current.Orientation = controller.Orientation.ToNet();
+                    jointEnumerator.Current.Position = vrObject.Position.ToNet();
+                    jointEnumerator.Current.Orientation = vrObject.Orientation.ToNet();
 
                     // Copy physics data from the controller
-                    jointEnumerator.Current.Velocity = controller.Velocity.ToNet();
-                    jointEnumerator.Current.Acceleration = controller.Acceleration.ToNet();
-                    jointEnumerator.Current.AngularVelocity = controller.AngularVelocity.ToNet();
-                    jointEnumerator.Current.AngularAcceleration = controller.AngularAcceleration.ToNet();
+                    jointEnumerator.Current.Velocity = vrObject.Velocity.ToNet();
+                    jointEnumerator.Current.Acceleration = vrObject.Acceleration.ToNet();
+                    jointEnumerator.Current.AngularVelocity = vrObject.AngularVelocity.ToNet();
+                    jointEnumerator.Current.AngularAcceleration = vrObject.AngularAcceleration.ToNet();
 
                     // Parse/copy the tracking state
                     jointEnumerator.Current.TrackingState = TrackedJointState.StateTracked;
