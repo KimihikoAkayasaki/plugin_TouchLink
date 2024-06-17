@@ -1,7 +1,7 @@
 {
   "version": "1.0.0.0",
-  "display_name": "Oculus TouchLink",
+  "display_name": "Oculus TouchLink - JamJar Build",
   "download":  "plugin_TouchLink.zip",
-  "changelog": "Detached (unforked) the repository.",
-  "guid": "DELTANRU-VEND-APII-DVCE-DVCEOTCHLINK"
+  "changelog": "Plugin now correctly uses vrobject for waist.",
+  "guid": "JammyJar-VEND-APII-DVCE-DVCEOTCHLINK"
 }
