@@ -38,7 +38,11 @@ namespace winrt::DeviceHandler::implementation
         bool initialized = false;
         HRESULT statusResult = R_E_NOT_STARTED;
 
-		std::vector<Joint> trackedJoints;
+		std::vector<Joint> trackedJoints = {
+			Joint{.Name = L"Left Touch Controller"},
+			Joint{.Name = L"Right Touch Controller"},
+			Joint{.Name = L"VR Object"}
+		};
 
 		std::thread ODTKRAThread;
         GuardianSystem* guardian;

@@ -23,11 +23,11 @@ using Quaternion = System.Numerics.Quaternion;
 namespace plugin_TouchLink;
 
 [Export(typeof(ITrackingDevice))]
-[ExportMetadata("Name", "TouchLink")]
-[ExportMetadata("Guid", "DELTANRU-VEND-APII-DVCE-DVCEOTCHLINK")]
-[ExportMetadata("Publisher", "DeltaNeverUsed")]
+[ExportMetadata("Name", "TouchLink - JamJar Build")]
+[ExportMetadata("Guid", "JammyJar-VEND-APII-DVCE-DVCEOTCHLINK")]
+[ExportMetadata("Publisher", "JamJar")]
 [ExportMetadata("Version", "1.0.0.0")]
-[ExportMetadata("Website", "https://github.com/KimihikoAkayasaki/plugin_TouchLink")]
+[ExportMetadata("Website", "https://github.com/Nia-Cao/plugin_TouchLink")]
 public class TouchLink : ITrackingDevice
 {
     [Import(typeof(IAmethystHost))] private IAmethystHost Host { get; set; }
