@@ -73,6 +73,7 @@ namespace winrt::DeviceHandler::implementation
                 };
             }
 
+
             for (size_t i = 0; i < guardian->vrObjects; i++)
             {
                 auto deviceType = static_cast<ovrTrackedDeviceType>(ovrTrackedDevice_Object0 + i);
