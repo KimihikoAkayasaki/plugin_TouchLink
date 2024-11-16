@@ -32,7 +32,8 @@ namespace winrt::DeviceHandler::implementation
                 guardian->mSession, ovr_GetTimeInSeconds() +
                 static_cast<float>(extraPrediction) * 0.001, ovrTrue);
 
-            for (int i = 0; i < 2; i++)
+            // Grab controller poses
+            for (int i = 0; i <= 1; i++)
             {
                 trackedJoints.at(i).Position = {
                     tracking_state.HandPoses[i].ThePose.Position.x,
@@ -172,20 +173,11 @@ namespace winrt::DeviceHandler::implementation
         guardian->start_ovr();
 
         // Check the yield result
-        if (statusResult == S_OK) 
+        if (statusResult == S_OK)
         {
-
-			// Not used anymore - joints are assigned in static context
-			/*for (size_t i = 0; i < guardian->vrObjects; i++)
-				trackedJoints.push_back(Joint{ .Name = std::format(L"VR Object {}", i + 1).c_str() });*/
-            // Always should keep >0 joints at init so replace the 1st one
-			/*
-            trackedJoints.push_back(Joint{ .Name = L"Left Touch Controller" });
-            trackedJoints.push_back(Joint{ .Name = L"Right Touch Controller" });
-
-            for (size_t i = 0; i < guardian->vrObjects; i++)
-                trackedJoints.push_back(Joint{ .Name = std::format(L"VR Object {}", i + 1).c_str() });
-				*/
+            // Not used anymore - joints are assigned in static context
+            /*for (size_t i = 0; i < guardian->vrObjects; i++)
+                trackedJoints.push_back(Joint{ .Name = std::format(L"VR Object {}", i + 1).c_str() });*/
         }
 
         // Mark the device as initialized
