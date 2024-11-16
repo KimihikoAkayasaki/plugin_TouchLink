@@ -25,7 +25,7 @@ namespace plugin_TouchLink;
 [Export(typeof(ITrackingDevice))]
 [ExportMetadata("Name", "TouchLink")]
 [ExportMetadata("Guid", "DELTANRU-VEND-APII-DVCE-DVCEOTCHLINK")]
-[ExportMetadata("Publisher", "公彦赤屋先, DeltaNeverUsed")]
+[ExportMetadata("Publisher", "JamJar, DeltaNeverUsed")]
 [ExportMetadata("Version", "1.0.0.2")]
 [ExportMetadata("Website", "https://github.com/KimihikoAkayasaki/plugin_TouchLink")]
 public class TouchLink : ITrackingDevice
