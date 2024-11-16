@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using System;
@@ -25,8 +25,8 @@ namespace plugin_TouchLink;
 [Export(typeof(ITrackingDevice))]
 [ExportMetadata("Name", "TouchLink")]
 [ExportMetadata("Guid", "DELTANRU-VEND-APII-DVCE-DVCEOTCHLINK")]
-[ExportMetadata("Publisher", "DeltaNeverUsed")]
-[ExportMetadata("Version", "1.0.0.1")]
+[ExportMetadata("Publisher", "公彦赤屋先, DeltaNeverUsed")]
+[ExportMetadata("Version", "1.0.0.2")]
 [ExportMetadata("Website", "https://github.com/KimihikoAkayasaki/plugin_TouchLink")]
 public class TouchLink : ITrackingDevice
 {
