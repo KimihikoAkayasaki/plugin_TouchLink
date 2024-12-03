@@ -32,7 +32,8 @@ namespace winrt::DeviceHandler::implementation
                 guardian->mSession, ovr_GetTimeInSeconds() +
                 static_cast<float>(extraPrediction) * 0.001, ovrTrue);
 
-            for (int i = 0; i < 2; i++)
+            // Grab controller poses
+            for (int i = 0; i <= 1; i++)
             {
                 trackedJoints.at(i).Position = {
                     tracking_state.HandPoses[i].ThePose.Position.x,
@@ -72,6 +73,7 @@ namespace winrt::DeviceHandler::implementation
                 };
             }
 
+
             for (size_t i = 0; i < guardian->vrObjects; i++)
             {
                 auto deviceType = static_cast<ovrTrackedDeviceType>(ovrTrackedDevice_Object0 + i);
@@ -83,38 +85,38 @@ namespace winrt::DeviceHandler::implementation
                 if ((ovr_pose.ThePose.Orientation.x != 0) && (ovr_pose.ThePose.Orientation.y != 0) && (ovr_pose.ThePose.
                     Orientation.z != 0))
                 {
-                    trackedJoints.at(i).Position = {
+                    trackedJoints.at(2).Position = {
                         ovr_pose.ThePose.Position.x,
                         ovr_pose.ThePose.Position.y,
                         ovr_pose.ThePose.Position.z
                     };
 
-                    trackedJoints.at(i).Orientation = {
+                    trackedJoints.at(2).Orientation = {
                         ovr_pose.ThePose.Orientation.x,
                         ovr_pose.ThePose.Orientation.y,
                         ovr_pose.ThePose.Orientation.z,
                         ovr_pose.ThePose.Orientation.w
                     };
 
-                    trackedJoints.at(i).Velocity = {
+                    trackedJoints.at(2).Velocity = {
                         ovr_pose.LinearVelocity.x,
                         ovr_pose.LinearVelocity.y,
                         ovr_pose.LinearVelocity.z
                     };
 
-                    trackedJoints.at(i).Acceleration = {
+                    trackedJoints.at(2).Acceleration = {
                         ovr_pose.LinearAcceleration.x,
                         ovr_pose.LinearAcceleration.y,
                         ovr_pose.LinearAcceleration.z
                     };
 
-                    trackedJoints.at(i).AngularVelocity = {
+                    trackedJoints.at(2).AngularVelocity = {
                         ovr_pose.AngularVelocity.x,
                         ovr_pose.AngularVelocity.y,
                         ovr_pose.AngularVelocity.z
                     };
 
-                    trackedJoints.at(i).AngularAcceleration = {
+                    trackedJoints.at(2).AngularAcceleration = {
                         ovr_pose.AngularAcceleration.x,
                         ovr_pose.AngularAcceleration.y,
                         ovr_pose.AngularAcceleration.z
@@ -171,14 +173,11 @@ namespace winrt::DeviceHandler::implementation
         guardian->start_ovr();
 
         // Check the yield result
-        if (statusResult == S_OK) 
+        if (statusResult == S_OK)
         {
-            // Always should keep >0 joints at init so replace the 1st one
-            trackedJoints.push_back(Joint{ .Name = L"Left Touch Controller" });
-            trackedJoints.push_back(Joint{ .Name = L"Right Touch Controller" });
-
-            for (size_t i = 0; i < guardian->vrObjects; i++)
-                trackedJoints.push_back(Joint{ .Name = std::format(L"VR Object {}", i + 1).c_str() });
+            // Not used anymore - joints are assigned in static context
+            /*for (size_t i = 0; i < guardian->vrObjects; i++)
+                trackedJoints.push_back(Joint{ .Name = std::format(L"VR Object {}", i + 1).c_str() });*/
         }
 
         // Mark the device as initialized
