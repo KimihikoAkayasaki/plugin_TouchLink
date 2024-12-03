@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0.2",
+  "version": "1.0.0.3",
   "display_name": "Oculus TouchLink",
   "download_":  "plugin_TouchLink.zip",
   "changelog": "Fixed HMD pose not updating.",
