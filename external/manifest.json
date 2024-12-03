@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0.0",
+  "version": "1.0.0.2",
   "display_name": "Oculus TouchLink",
-  "download":  "plugin_TouchLink.zip",
-  "changelog": "Detached (unforked) the repository.",
+  "download_":  "plugin_TouchLink.zip",
+  "changelog": "Fixed HMD pose not updating.",
   "guid": "DELTANRU-VEND-APII-DVCE-DVCEOTCHLINK"
 }
