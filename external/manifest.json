@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0.3",
+  "version": "1.0.0.4",
   "display_name": "Oculus TouchLink",
   "download_":  "plugin_TouchLink.zip",
-  "changelog": "Fixed HMD pose not updating.",
+  "changelog": "Updated for Amethyst 1.3",
   "guid": "DELTANRU-VEND-APII-DVCE-DVCEOTCHLINK"
 }
